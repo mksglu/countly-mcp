@@ -1,0 +1,12 @@
+name = "countly-mcp"
+main = "src/index.ts"
+compatibility_date = "2024-01-01"
+
+[durable_objects]
+bindings = [
+  { name = "MCP_OBJECT", class_name = "MyMCP" }
+]
+
+[[migrations]]
+tag = "v1"
+new_classes = ["MyMCP"]
