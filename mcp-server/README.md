@@ -1,50 +1,114 @@
-# Building a Remote MCP Server on Cloudflare (Without Auth)
+Countly MCP Server
+🚀 About This Project
+This project is a Cloudflare Workers-based MCP Server designed to fetch Countly data via MCP (Model Context Protocol).
 
-This example allows you to deploy a remote MCP server that doesn't require authentication on Cloudflare Workers. 
+Currently, only the Events tool is active. You can connect to the Countly API through the MCP server to retrieve Event data in JSON format.
 
-## Get started: 
+✨ Features
+✅ MCP server runs on Cloudflare
 
-[![Deploy to Workers](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/cloudflare/ai/tree/main/demos/remote-mcp-authless)
+✅ countlyEvents tool is ready
 
-This will deploy your MCP server to a URL like: `remote-mcp-server-authless.<your-account>.workers.dev/sse`
+✅ SSE (Server-Sent Events) support
 
-Alternatively, you can use the command line below to get the remote MCP Server created on your local machine:
-```bash
-npm create cloudflare@latest -- my-mcp-server --template=cloudflare/ai/demos/remote-mcp-authless
-```
+✅ Deployable on Cloudflare
 
-## Customizing your MCP Server
+🔄 Directly integrated with the Countly panel (Event data can be fetched but is not displayed on the panel)
 
-To add your own [tools](https://developers.cloudflare.com/agents/model-context-protocol/tools/) to the MCP server, define each tool inside the `init()` method of `src/index.ts` using `this.server.tool(...)`. 
+🧪 Optional test client (can be used to test MCP calls)
 
-## Connect to Cloudflare AI Playground
+🛠️ Setup and Execution
+Requirements:
 
-You can connect to your MCP server from the Cloudflare AI Playground, which is a remote MCP client:
+Node.js 20+
 
-1. Go to https://playground.ai.cloudflare.com/
-2. Enter your deployed MCP server URL (`remote-mcp-server-authless.<your-account>.workers.dev/sse`)
-3. You can now use your MCP tools directly from the playground!
+Clone the repository and install dependencies:
 
-## Connect Claude Desktop to your MCP server
+Bash
 
-You can also connect to your remote MCP server from local MCP clients, by using the [mcp-remote proxy](https://www.npmjs.com/package/mcp-remote). 
+git clone <repository-url>
+cd <repository-directory>
+npm install
+Start the MCP server in development mode:
 
-To connect to your MCP server from Claude Desktop, follow [Anthropic's Quickstart](https://modelcontextprotocol.io/quickstart/user) and within Claude Desktop go to Settings > Developer > Edit Config.
+Bash
 
-Update with this configuration:
+npm run dev
+Check the server status:
+After the server starts, you can check its status from the / endpoint.
 
-```json
+Bash
+
+curl http://localhost:PORT/
+Note: The PORT value will be displayed in the terminal when you run the npm run dev command.
+
+Example Response:
+
+JSON
+
 {
-  "mcpServers": {
-    "calculator": {
-      "command": "npx",
-      "args": [
-        "mcp-remote",
-        "http://localhost:8787/sse"  // or remote-mcp-server-authless.your-account.workers.dev/sse
-      ]
-    }
-  }
+  "name": "Countly MCP Server - Events Only",
+  "version": "1.0.0",
+  "status": "running",
+  "tools": ["countlyEvents"]
 }
-```
+Establish an SSE connection:
 
-Restart Claude and you should see the tools become available. 
+Bash
+
+curl http://localhost:PORT/sse?sessionId=YOUR_SESSION_ID
+📝 MCP Tool Usage (Events)
+You can fetch Event data by making a POST request with the Mcp-Session-Id header.
+
+Example Payload:
+
+JSON
+
+{
+  "jsonrpc": "2.0",
+  "method": "tools/call",
+  "params": {
+    "name": "countlyEvents",
+    "arguments": {}
+  },
+  "id": 1
+}
+📊 Countly Plugin List & Roadmap
+Plugin	Status
+Events	✅ Completed
+Funnels	⬜ Planned
+Sessions	⬜ Planned
+User Profiles	⬜ Planned
+Crashes	⬜ Planned
+A/B Testing	⬜ Planned
+Push Notifications	⬜ Planned
+Cohorts	⬜ Planned
+
+E-Tablolar'a aktar
+💡 MCP Information
+MCP (Model Context Protocol): A protocol used to fetch Countly data and make model-based API calls.
+
+MCP Server: A server running on Cloudflare that manages sessions via SSE and provides MCP tools.
+
+Events tool: Designed to fetch Countly Event data.
+
+Session Management: A unique sessionId is created via SSE, and this ID is used in MCP calls.
+
+📷 Test Screenshot
+You can connect to the MCP server and call the countlyEvents tool using Claude UI, Postman, or a similar tool.
+
+Example SSE Session and Event JSON Output:
+
+🔌 Connecting to SSE with initial ID: test-session-12345
+🟢 SSE connection opened
+📨 Received endpoint event: /sse/message?sessionId=test-session-12345
+✅ Real session ID extracted: test-session-12345
+📌 Using session ID for tool call: test-session-12345
+🔧 Calling countlyEvents tool...
+📄 JSON Response:
+{
+  "events": [
+    {"name":"app_open","count":120},
+    {"name":"purchase","count":45}
+  ]
+}

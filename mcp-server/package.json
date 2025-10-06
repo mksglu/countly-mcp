@@ -1,6 +1,7 @@
 {
-	"name": "remote-mcp-server-authless",
-	"version": "0.0.0",
+	"name": "mcp-server",
+	"version": "1.0.0",
+	"type": "module",
 	"private": true,
 	"scripts": {
 		"deploy": "wrangler deploy",
@@ -20,7 +21,7 @@
 	"devDependencies": {
 		"@biomejs/biome": "^2.2.5",
 		"@types/node": "^24.6.2",
-		"typescript": "5.9.3",
+		"typescript": "^5.9.3",
 		"wrangler": "^4.42.0"
 	}
 }
