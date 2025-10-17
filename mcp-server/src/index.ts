@@ -3,14 +3,14 @@ import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 
 export class MyMCP extends McpAgent {
   server = new McpServer({
-    name: "Countly MCP Server - Events Only",
+    name: "Countly MCP Server",
     version: "1.0.0",
   });
 
   // Countly config
-  private COUNTLY_BASE_URL = "https://countly-25ead5664e9ef.flex.countly.com";
-  private APP_ID = "68e258c2726ef31b361f2f62";
-  private API_KEY = "efac210c1e4d5184b39a70178a5a0130";
+  private COUNTLY_BASE_URL = "https://countly-0fc41dd055e6d.flex.countly.com";
+  private APP_ID = "68f24d6acf33bd33431ea01f";
+  private API_KEY = "4d4235ae05b9685d285340a8ae763484";
 
   async init() {
     console.log("🔧 Initializing tools...");
@@ -153,7 +153,7 @@ export default {
     if (url.pathname === "/") {
       return new Response(
         JSON.stringify({
-          name: "Countly MCP Server - Events Only",
+          name: "Countly MCP Server",
           version: "1.0.0",
           status: "running",
           tools: ["sendCountlyEvent", "countlyEvents"], // ✅ İkisi de burada
