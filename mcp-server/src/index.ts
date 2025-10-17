@@ -15,7 +15,6 @@ export class MyMCP extends McpAgent {
   async init() {
     console.log("🔧 Initializing tools...");
     
-    // Tool 1: Event Gönder
     this.server.tool(
       "sendCountlyEvent",
       {
@@ -82,7 +81,6 @@ export class MyMCP extends McpAgent {
       }
     );
 
-    // Tool 2: Event'leri Çek
     this.server.tool(
       "countlyEvents", 
       {},

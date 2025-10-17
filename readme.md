@@ -1,6 +1,8 @@
 # Countly MCP Server
 
-A production-ready **Cloudflare Workers-based MCP (Model Context Protocol) Server** for seamless integration with Countly Analytics. Built with TypeScript, Durable Objects, and SSE (Server-Sent Events) for real-time session management.
+> ⚠️ **UNOFFICIAL PROJECT** - This is NOT an official Countly project. It's an independent MCP server implementation for Countly Analytics integration.
+
+A production-ready **Cloudflare Workers-based MCP (Model Context Protocol) Server** for seamless integration with Countly Analytics. Built with TypeScript and SSE (Server-Sent Events) for real-time session management.
 
 ## 🎯 Overview
 
@@ -9,22 +11,6 @@ This MCP server acts as a bridge between AI assistants (like Claude) and Countly
 - **Analytics data retrieval** - Fetch event statistics and metrics
 - **Session-based communication** - SSE-powered stateful connections
 - **Edge deployment** - Runs on Cloudflare's global network for low latency
-
-### 🏗️ Architecture
-
-```
-┌─────────────────┐      SSE/HTTP       ┌──────────────────┐      REST API      ┌─────────────────┐
-│   AI Assistant  │ ◄────────────────► │   MCP Server     │ ◄────────────────► │  Countly API    │
-│   (Claude UI)   │   JSON-RPC 2.0     │ (Cloudflare      │   Analytics Data   │  (Analytics)    │
-└─────────────────┘                    │   Workers)       │                    └─────────────────┘
-                                        └──────────────────┘
-                                                │
-                                                ▼
-                                        ┌──────────────────┐
-                                        │  Durable Objects │
-                                        │  (Session Store) │
-                                        └──────────────────┘
-```
 
 ---
 
@@ -38,7 +24,6 @@ This MCP server acts as a bridge between AI assistants (like Claude) and Countly
 
 ### Technical Features
 - ✅ **Cloudflare Workers** - Edge computing for global low-latency
-- ✅ **Durable Objects** - Stateful session management
 - ✅ **SSE (Server-Sent Events)** - Real-time bidirectional communication
 - ✅ **TypeScript** - Full type safety
 - ✅ **CORS Support** - Cross-origin requests enabled
@@ -503,6 +488,5 @@ npm run type-check  # Check for issues
 - **MCP Protocol:** [https://modelcontextprotocol.io](https://modelcontextprotocol.io)
 - **Countly Docs:** [https://support.count.ly/hc/en-us](https://support.count.ly/hc/en-us)
 - **Cloudflare Workers:** [https://developers.cloudflare.com/workers](https://developers.cloudflare.com/workers)
-- **Durable Objects:** [https://developers.cloudflare.com/durable-objects](https://developers.cloudflare.com/durable-objects)
 
 ---
