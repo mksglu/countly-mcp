@@ -79,8 +79,6 @@ COUNTLY_API_KEY=your_api_key
 COUNTLY_APP_KEY=your_app_key  # For sending events
 ```
 
-**⚠️ Security Warning:** Never commit `.env` files or hardcode credentials!
-
 <details>
 <summary>📘 How to get Countly credentials</summary>
 
@@ -384,7 +382,7 @@ npm run deploy
 ### Step 3: Test Production
 
 ```bash
-curl https://mcp-server.your-worker.workers.dev/
+curl https://mcp-server.mksglu.workers.dev/
 
 # Expected: Server status JSON
 ```
