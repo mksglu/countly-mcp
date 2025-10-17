@@ -359,7 +359,7 @@ npm run deploy
 ### Step 3: Test Production
 
 ```bash
-curl https://mcp-server.mksglu.workers.dev/
+curl https://mcp-server.your-worker.workers.dev
 
 # Expected: Server status JSON
 ```
