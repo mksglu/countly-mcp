@@ -389,8 +389,6 @@ curl https://mcp-server.your-worker.workers.dev/
 # Expected: Server status JSON
 ```
 
-**📄 See [DEPLOYMENT.md](./DEPLOYMENT.md) for detailed deployment guide.**
-
 ---
 
 ## 🔧 Development
@@ -419,66 +417,6 @@ npm run format       # Format code with Biome
 npm run lint:fix     # Fix linting issues
 npm run type-check   # TypeScript type checking
 npm run cf-typegen   # Generate Cloudflare types
-```
-
-### Code Quality
-
-```bash
-# Format code
-npm run format
-
-# Type check
-npm run type-check
-
-# Fix linting issues
-npm run lint:fix
-```
-
----
-
-## 🐛 Troubleshooting
-
-### Common Issues
-
-#### 1. `401 Unauthorized` Error
-**Cause:** Invalid API credentials
-
-**Solution:**
-- Verify `COUNTLY_API_KEY` in `.env`
-- Check API key permissions in Countly dashboard
-- Ensure API key is active
-
-#### 2. `CORS` Errors
-**Cause:** Browser security restrictions
-
-**Solution:**
-- CORS is already enabled in the worker
-- For localhost testing, use `--disable-web-security` flag (Chrome)
-- Or test with Postman/cURL
-
-#### 3. `Session ID Not Found`
-**Cause:** SSE connection closed or invalid
-
-**Solution:**
-- Establish new SSE connection
-- Ensure `Mcp-Session-Id` header matches SSE session
-- Check network connection stability
-
-#### 4. Events Not Appearing in Countly
-**Cause:** Wrong `COUNTLY_APP_KEY` or delayed processing
-
-**Solution:**
-- Verify `COUNTLY_APP_KEY` (not API_KEY!)
-- Wait 1-2 minutes for Countly to process events
-- Check event queue in Countly dashboard
-
-#### 5. TypeScript Errors
-**Cause:** Missing type definitions
-
-**Solution:**
-```bash
-npm run cf-typegen  # Regenerate Cloudflare types
-npm run type-check  # Check for issues
 ```
 
 ---
