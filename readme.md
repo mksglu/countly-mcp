@@ -225,29 +225,6 @@ Send custom events to Countly with optional segmentation.
 }
 ```
 
-**Example with cURL:**
-```bash
-SESSION_ID="a3f5c2d1e4b6"  # Replace with your session ID
-
-curl -X POST http://localhost:8787/mcp \
-  -H "Content-Type: application/json" \
-  -H "Mcp-Session-Id: $SESSION_ID" \
-  -d '{
-    "jsonrpc": "2.0",
-    "method": "tools/call",
-    "params": {
-      "name": "sendCountlyEvent",
-      "arguments": {
-        "eventKey": "purchase",
-        "count": 1,
-        "sum": 49.99,
-        "segmentation": {"product": "premium_plan"}
-      }
-    },
-    "id": 1
-  }'
-```
-
 ---
 
 ### Tool 2: `countlyEvents`
